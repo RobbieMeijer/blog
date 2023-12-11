@@ -32,7 +32,7 @@ const BlogArchive = () => {
       ))} } */}
       <BlogCard
         key={6}
-        imageSrc={'https://placehold.co/272x162'}
+        imageSrc={'https://placehold.co/285x72'}
         date={'2024-01-08'}
         title={'Blog title 3'}
         category={'Blog category 3'}
@@ -40,7 +40,7 @@ const BlogArchive = () => {
       />
       <BlogCard
         key={5}
-        imageSrc={'https://placehold.co/272x162'}
+        imageSrc={'https://placehold.co/285x72'}
         date={'2024-01-07'}
         title={'Blog title 2'}
         category={'Blog category 2'}
@@ -48,7 +48,7 @@ const BlogArchive = () => {
       />
       <BlogCard
         key={4}
-        imageSrc={'https://placehold.co/272x162'}
+        imageSrc={'https://placehold.co/285x72'}
         date={'2024-01-06'}
         title={'Blog title 1'}
         category={'Blog category 1'}
@@ -56,7 +56,7 @@ const BlogArchive = () => {
       />
       <BlogCard
         key={3}
-        imageSrc={'https://placehold.co/272x162'}
+        imageSrc={'https://placehold.co/285x72'}
         date={'2024-01-08'}
         title={'Blog title 3'}
         category={'Blog category 3'}
@@ -64,7 +64,7 @@ const BlogArchive = () => {
       />
       <BlogCard
         key={2}
-        imageSrc={'https://placehold.co/272x162'}
+        imageSrc={'https://placehold.co/285x72'}
         date={'2024-01-07'}
         title={'Blog title 2'}
         category={'Blog category 2'}
@@ -72,7 +72,7 @@ const BlogArchive = () => {
       />
       <BlogCard
         key={1}
-        imageSrc={'https://placehold.co/272x162'}
+        imageSrc={'https://placehold.co/285x72'}
         date={'2024-01-06'}
         title={'Blog title 1'}
         category={'Blog category 1'}

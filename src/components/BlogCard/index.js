@@ -3,8 +3,10 @@ import './style.scss';
 const BlogCard = ({ key, imageSrc, date, title, category, text }) => {
   return (
     <div key={key} className="blog-card">
-      <div className="blog-card__image-container">
-        <img src={imageSrc} alt="" className="blog-card__img" />
+      <div
+        className="blog-card__image-container"
+        style={{ backgroundImage: `url(${imageSrc})` }}
+      >
         <div className="blog-card__meta">
           <time className="blog-card__date" dateTime={date}>
             {date}
