@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react'; // Add import statement for React library
 import './style.scss';
 import Button from '../Button';
 
@@ -7,18 +6,33 @@ const BlogForm = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
+  const [image, setImage] = useState(null);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const blogPost = { title, content, category };
-  //   await axios.post('https://api.cgnbfnfghnfhnryfh.nl/blogposts', blogPost); // TODO: replace with API URL.
-  //   setTitle('');
-  //   setContent('');
-  //   setCategory('');
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('category_id', category);
+    formData.append('image', image);
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+      },
+      body: formData,
+      redirect: 'follow',
+    };
+
+    fetch('https://frontend-case-api.sbdev.nl/api/posts', requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
+  };
 
   return (
-    // <form className="blog-form__form" onSubmit={handleSubmit}>
     <aside className="blog__sidebar">
       <div className="blog-form">
         <h2 className="blog-form__heading">Plaats een blog bericht</h2>
@@ -31,7 +45,7 @@ const BlogForm = () => {
               className="blog-form__title"
               type="text"
               value={title}
-              // onChange={(e) => setTitle(e.target.value)}
+              onChange={({ target }) => setTitle(target?.value)}
               placeholder="Geen titel"
               name="title"
               required
@@ -44,7 +58,7 @@ const BlogForm = () => {
             <select
               className="blog-form__category"
               value={category}
-              // onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) => setCategory(e.target.value)}
               name="category"
               required
             >
@@ -61,7 +75,7 @@ const BlogForm = () => {
             <input
               className="blog-form__image-input"
               type="file"
-              // onChange={(e) => setImage(e.target.files[0])}
+              onChange={({ target }) => setImage(target?.files[0])}
               name="image"
               required
             />
@@ -73,7 +87,7 @@ const BlogForm = () => {
             <textarea
               className="blog-form__content"
               value={content}
-              // onChange={(e) => setContent(e.target.value)}
+              onChange={({ target }) => setContent(target?.value)}
               name="content"
               required
             />
@@ -82,7 +96,7 @@ const BlogForm = () => {
             <Button
               type="submit"
               text="Bericht aanmaken"
-              onClick={() => null}
+              onClick={(e) => handleSubmit(e)}
             />
           </fieldset>
         </form>
