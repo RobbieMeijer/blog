@@ -29,24 +29,24 @@ const BlogPreview = () => {
         </div>
       ))} */}
       <BlogCard
-        key={null}
-        imageSrc={'https://via.placeholder.com/272x162'}
+        key={3}
+        imageSrc={'https://placehold.co/272x162'}
         date={'2024-01-08'}
         title={'Blog title 3'}
         category={'Blog category 3'}
         text={'Blog text 3'}
       />
       <BlogCard
-        key={null}
-        imageSrc={'https://via.placeholder.com/272x162'}
+        key={2}
+        imageSrc={'https://placehold.co/272x162'}
         date={'2024-01-08'}
         title={'Blog title 2'}
         category={'Blog category 2'}
         text={'Blog text 2'}
       />
       <BlogCard
-        key={null}
-        imageSrc={'https://via.placeholder.com/272x162'}
+        key={1}
+        imageSrc={'https://placehold.co/272x162'}
         date={'2024-01-08'}
         title={'Blog title 1'}
         category={'Blog category 1'}

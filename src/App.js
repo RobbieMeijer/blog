@@ -1,20 +1,17 @@
+import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import BlogForm from './components/BlogForm';
 import BlogPreview from './components/BlogPreview';
 import BlogArchive from './components/BlogArchive';
-import './App.scss';
+import logo from './assets/logo.svg';
 
 const App = () => {
   return (
     <Router>
       <div className="blog">
         <header className="blog__header">
-          <img
-            src="https://via.placeholder.com/240x57"
-            alt=""
-            className="blog__logo"
-          />
+          <img src={logo} alt="Logo" className="blog__logo" />
           <Navigation />
         </header>
         <div className="blog__content">

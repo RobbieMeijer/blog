@@ -22,7 +22,7 @@ const BlogForm = () => {
     <div className="blog-form">
       <h2 className="blog-form__heading">Plaats een blog bericht</h2>
       <form className="blog-form__form">
-        <div className="blog-form__form-group">
+        <fieldset className="blog-form__form-group">
           <label className="blog-form__label" htmlFor="title">
             Berichtnaam
           </label>
@@ -35,8 +35,8 @@ const BlogForm = () => {
             name="title"
             required
           />
-        </div>
-        <div className="blog-form__form-group">
+        </fieldset>
+        <fieldset className="blog-form__form-group">
           <label className="blog-form__label" htmlFor="category">
             Categorie
           </label>
@@ -52,20 +52,20 @@ const BlogForm = () => {
             <option value="lifestyle">Lifestyle</option>
             <option value="travel">Reizen</option>
           </select>
-        </div>
-        <div className="blog-form__form-group">
+        </fieldset>
+        <fieldset className="blog-form__form-group">
           <label className="blog-form__label" htmlFor="image">
             Header afbeelding
           </label>
           <input
-            className="blog-form__image"
+            className="blog-form__image-input"
             type="file"
             // onChange={(e) => setImage(e.target.files[0])}
             name="image"
             required
           />
-        </div>
-        <div className="blog-form__form-group">
+        </fieldset>
+        <fieldset className="blog-form__form-group">
           <label className="blog-form__label" htmlFor="content">
             Bericht
           </label>
@@ -76,7 +76,7 @@ const BlogForm = () => {
             name="content"
             required
           />
-        </div>
+        </fieldset>
         <Button type="submit" text="Bericht aanmaken" onClick={() => null} />
       </form>
     </div>

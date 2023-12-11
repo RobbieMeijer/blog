@@ -1,8 +1,24 @@
 .blog {
+  font-family: 'Inter', sans-serif;
+
   &__header {
+    width: calc(100% - 2.5rem);
+    max-width: 1440px;
+    height: calc(208px - 4rem);
+    background: url('./assets/bg-header.png') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    padding: 2rem 1rem;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
   }
 
   &__logo {
+    width: 240px;
+    height: 57px;
   }
 
   &__content {

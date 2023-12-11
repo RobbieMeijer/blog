@@ -6,7 +6,7 @@ const BlogCard = ({ key, imageSrc, date, title, category, text }) => {
       <div className="blog-card__image-container">
         <img src={imageSrc} alt="" className="blog-card__img" />
         <div className="blog-card__meta">
-          <time className="blog-card__date" datetime={date}>
+          <time className="blog-card__date" dateTime={date}>
             {date}
           </time>
           <span className="blog-card__category">{category}</span>
