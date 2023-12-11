@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import './style.css';
+import './style.scss';
 import Button from '../Button';
 
 const BlogForm = () => {

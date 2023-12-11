@@ -1,3 +1,5 @@
+import './style.scss';
+
 const BlogCard = ({ key, imageSrc, date, title, category, text }) => {
   return (
     <div key={key} className="blog-card">

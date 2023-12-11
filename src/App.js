@@ -3,7 +3,7 @@ import Navigation from './components/Navigation';
 import BlogForm from './components/BlogForm';
 import BlogPreview from './components/BlogPreview';
 import BlogArchive from './components/BlogArchive';
-import './App.css';
+import './App.scss';
 
 const App = () => {
   return (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './style.css';
+import './style.scss';
 import BlogCard from '../BlogCard';
 import Button from '../Button';
 
