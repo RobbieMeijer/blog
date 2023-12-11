@@ -1,3 +1,19 @@
 .blog-preview {
   padding: 1.5rem;
+
+  &__card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+    gap: 1.5rem;
+
+    @media (min-width: 960px) {
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    }
+  }
+
+  .blog__btn {
+    margin-top: 1.5rem;
+    display: flex;
+    align-self: center;
+  }
 }

@@ -28,45 +28,47 @@ const BlogPreview = () => {
           <p className="blog-card__paragraph">{post.content}</p>
         </div>
       ))} */}
-      <BlogCard
-        key={3}
-        imageSrc={'https://placehold.co/285x72'}
-        date={'2024-01-08'}
-        title={'Blog title 3'}
-        category={'Blog category 3'}
-        text={
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget metus blandit, pharetra nisi eu, aliquet leo. risus, id lobortis massa ultrices nec.'
-        }
-      />
-      <BlogCard
-        key={2}
-        imageSrc={'https://placehold.co/285x72'}
-        date={'2024-01-08'}
-        title={'Blog title 2'}
-        category={'Blog category 2'}
-        text={
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget metus blandit, pharetra nisi eu, aliquet leo. risus, id lobortis massa ultrices nec.'
-        }
-      />
-      <BlogCard
-        key={1}
-        imageSrc={'https://placehold.co/285x72'}
-        date={'2024-01-08'}
-        title={'Blog title 1'}
-        category={'Blog category 1'}
-        text={
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget metus blandit, pharetra nisi eu, aliquet leo. risus, id lobortis massa ultrices nec.'
-        }
-      />
+      <div className="blog-preview__card-container">
+        <BlogCard
+          key={3}
+          imageSrc={'https://placehold.co/285x72'}
+          date={'2024-01-08'}
+          title={'Blog title 3'}
+          category={'Blog category 3'}
+          text={
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget metus blandit, pharetra nisi eu, aliquet leo. risus, id lobortis massa ultrices nec.'
+          }
+        />
+        <BlogCard
+          key={2}
+          imageSrc={'https://placehold.co/285x72'}
+          date={'2024-01-08'}
+          title={'Blog title 2'}
+          category={'Blog category 2'}
+          text={
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget metus blandit, pharetra nisi eu, aliquet leo. risus, id lobortis massa ultrices nec.'
+          }
+        />
+        <BlogCard
+          key={1}
+          imageSrc={'https://placehold.co/285x72'}
+          date={'2024-01-08'}
+          title={'Blog title 1'}
+          category={'Blog category 1'}
+          text={
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget metus blandit, pharetra nisi eu, aliquet leo. risus, id lobortis massa ultrices nec.'
+          }
+        />
+      </div>
+
       {/* <button
         className="blog__btn"
         // onClick={() => setPage(page + 1)}
       >
         Load more
       </button> */}
-      <fieldset className="blog-form__form-group">
-        <Button type="submit" text="Laad meer" onClick={() => null} />
-      </fieldset>
+
+      <Button type="submit" text="Laad meer" onClick={() => null} />
     </div>
   );
 };
