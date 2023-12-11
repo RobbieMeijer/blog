@@ -58,7 +58,7 @@ const BlogPreview = () => {
       >
         Load more
       </button> */}
-      <Button type="submit" text="Bericht aanmaken" onClick={() => null} />
+      <Button type="submit" text="Laad meer" onClick={() => null} />
     </div>
   );
 };

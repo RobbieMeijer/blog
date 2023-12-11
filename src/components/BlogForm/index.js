@@ -19,67 +19,75 @@ const BlogForm = () => {
 
   return (
     // <form className="blog-form__form" onSubmit={handleSubmit}>
-    <div className="blog-form">
-      <h2 className="blog-form__heading">Plaats een blog bericht</h2>
-      <form className="blog-form__form">
-        <fieldset className="blog-form__form-group">
-          <label className="blog-form__label" htmlFor="title">
-            Berichtnaam
-          </label>
-          <input
-            className="blog-form__title"
-            type="text"
-            value={title}
-            // onChange={(e) => setTitle(e.target.value)}
-            placeholder="Geen titel"
-            name="title"
-            required
-          />
-        </fieldset>
-        <fieldset className="blog-form__form-group">
-          <label className="blog-form__label" htmlFor="category">
-            Categorie
-          </label>
-          <select
-            className="blog-form__category"
-            value={category}
-            // onChange={(e) => setCategory(e.target.value)}
-            name="category"
-            required
-          >
-            <option value="">Geen categorie</option>
-            <option value="technology">Tech</option>
-            <option value="lifestyle">Lifestyle</option>
-            <option value="travel">Reizen</option>
-          </select>
-        </fieldset>
-        <fieldset className="blog-form__form-group">
-          <label className="blog-form__label" htmlFor="image">
-            Header afbeelding
-          </label>
-          <input
-            className="blog-form__image-input"
-            type="file"
-            // onChange={(e) => setImage(e.target.files[0])}
-            name="image"
-            required
-          />
-        </fieldset>
-        <fieldset className="blog-form__form-group">
-          <label className="blog-form__label" htmlFor="content">
-            Bericht
-          </label>
-          <textarea
-            className="blog-form__content"
-            value={content}
-            // onChange={(e) => setContent(e.target.value)}
-            name="content"
-            required
-          />
-        </fieldset>
-        <Button type="submit" text="Bericht aanmaken" onClick={() => null} />
-      </form>
-    </div>
+    <aside className="blog__sidebar">
+      <div className="blog-form">
+        <h2 className="blog-form__heading">Plaats een blog bericht</h2>
+        <form className="blog-form__form">
+          <fieldset className="blog-form__form-group">
+            <label className="blog-form__label" htmlFor="title">
+              Berichtnaam
+            </label>
+            <input
+              className="blog-form__title"
+              type="text"
+              value={title}
+              // onChange={(e) => setTitle(e.target.value)}
+              placeholder="Geen titel"
+              name="title"
+              required
+            />
+          </fieldset>
+          <fieldset className="blog-form__form-group">
+            <label className="blog-form__label" htmlFor="category">
+              Categorie
+            </label>
+            <select
+              className="blog-form__category"
+              value={category}
+              // onChange={(e) => setCategory(e.target.value)}
+              name="category"
+              required
+            >
+              <option value="">Geen categorie</option>
+              <option value="technology">Tech</option>
+              <option value="lifestyle">Lifestyle</option>
+              <option value="travel">Reizen</option>
+            </select>
+          </fieldset>
+          <fieldset className="blog-form__form-group">
+            <label className="blog-form__label" htmlFor="image">
+              Header afbeelding
+            </label>
+            <input
+              className="blog-form__image-input"
+              type="file"
+              // onChange={(e) => setImage(e.target.files[0])}
+              name="image"
+              required
+            />
+          </fieldset>
+          <fieldset className="blog-form__form-group">
+            <label className="blog-form__label" htmlFor="content">
+              Bericht
+            </label>
+            <textarea
+              className="blog-form__content"
+              value={content}
+              // onChange={(e) => setContent(e.target.value)}
+              name="content"
+              required
+            />
+          </fieldset>
+          <fieldset className="blog-form__form-group">
+            <Button
+              type="submit"
+              text="Bericht aanmaken"
+              onClick={() => null}
+            />
+          </fieldset>
+        </form>
+      </div>
+    </aside>
   );
 };
 

@@ -11,15 +11,15 @@ const App = () => {
     <Router>
       <div className="blog">
         <header className="blog__header">
-          <img src={logo} alt="Logo" className="blog__logo" />
-          <Navigation />
+          <div className="blog__header-container">
+            <img src={logo} alt="Logo" className="blog__logo" />
+            <Navigation />
+          </div>
         </header>
         <div className="blog__content">
-          <aside className="blog__sidebar">
-            <Routes>
-              <Route path="/" element={<BlogForm />} />
-            </Routes>
-          </aside>
+          <Routes>
+            <Route path="/" element={<BlogForm />} />
+          </Routes>
           <main className="blog__main-content">
             <Routes>
               <Route path="/" element={<BlogPreview />} />

@@ -1,25 +1,57 @@
 .blog-form {
-  &__heading {
-  }
+  padding: 1.5rem;
 
-  &__form {
+  &__heading {
+    color: #2b2b2b;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 2rem;
   }
 
   &__form-group {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0 0 1.5rem;
+
+    input,
+    select,
+    textarea {
+      line-height: 1rem;
+      padding: 0.75rem 1rem;
+      background-color: #fafafa;
+      border: 0;
+    }
   }
 
   &__label {
+    color: #404040;
+    font-size: 12px;
+    line-height: 1rem;
   }
 
   &__title {
+    color: #c5c5c5;
+    font-size: 12px;
+    font-style: italic;
+    letter-spacing: 0;
   }
 
   &__category {
+    color: #c5c5c5;
+    font-style: italic;
   }
 
   &__image-input {
+    border-radius: 10px;
+    background-color: #7d7d7d;
   }
 
   &__content {
+    width: inherit;
+    min-height: 214px;
+    resize: vertical;
   }
 }
