@@ -10,6 +10,11 @@ const App = () => {
     <Router>
       <div className="blog">
         <header className="blog__header">
+          <img
+            src="https://via.placeholder.com/240x57"
+            alt=""
+            className="blog__logo"
+          />
           <Navigation />
         </header>
         <div className="blog__content">
