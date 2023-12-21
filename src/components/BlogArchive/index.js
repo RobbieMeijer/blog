@@ -88,7 +88,7 @@ const BlogArchive = () => {
           pageCount={lastPage}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
-          onPageChange={({ selected }) => setCurrentPage(selected)}
+          onPageChange={({ selected }) => setCurrentPage(selected + 1)}
           containerClassName={'blog-archive__pagination'}
           activeClassName={'active'}
         />
