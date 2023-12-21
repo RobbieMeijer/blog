@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; // Add import statement for React library
+import { useState } from 'react'; // Add import statement for React library
 import './style.scss';
 import Button from '../Button';
 
@@ -6,7 +6,7 @@ const BlogForm = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [imageName, setImageName] = useState();
+  const [imageName, setImageName] = useState('');
   const [fileInput, setFileInput] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -14,12 +14,18 @@ const BlogForm = () => {
 
     try {
       // Fallback: check if required fields are not empty.
-      if (!title || !content || !categoryId || !fileInput || !imageName) {
+      if (
+        '' !== title ||
+        '' !== content ||
+        '' !== categoryId ||
+        null !== fileInput ||
+        '' !== imageName
+      ) {
         console.log('All fields are required');
         return;
       }
 
-      // Set up form data
+      // Set up form data.
       const formData = new FormData();
       formData.append('title', title);
       formData.append('content', content);
