@@ -8,9 +8,12 @@ import getFormattedDate from '../../functions/getformattedDate';
 const BlogPreview = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Add a state for the current page.
+  const [lastPage, setLastPage] = useState(1); // Add a state for the last page.
 
   const fetchPosts = async () => {
     // TODO: create custom hook / re-usable function for this.
+
+    // Define request options.
     const requestOptions = {
       method: 'GET',
       redirect: 'follow',
@@ -22,25 +25,31 @@ const BlogPreview = () => {
     };
 
     try {
+      // Fetch posts data.
       const response = await fetch(
         `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=4&sortBy=created_at&sortDirection=desc&ber`,
         requestOptions
       );
 
+      // Throw error if response is not ok.
       if (!response.ok) {
         throw new Error(response.statusText);
       }
 
+      // Get json formatted data from response.
       const result = await response.json();
+      const { data: posts, last_page } = result; // Destructure properties from result.
       console.log('result: ', result);
 
       if (1 === currentPage) {
         // Set first 4 posts in state.
-        setPosts(result.data);
+        setPosts(posts);
       } else {
-        // Append new posts to existing posts in state.
-        setPosts((prevPosts) => [...prevPosts, ...result.data]);
+        setPosts((prevPosts) => [...prevPosts, ...posts]); // Append new posts to existing posts in state.
       }
+
+      // Set last page in state, if last page is equel to current page, load more button is not required.
+      setLastPage(last_page);
     } catch (error) {
       return console.log('error', error);
     }
@@ -80,7 +89,9 @@ const BlogPreview = () => {
           )
         )}
       </div>
-      <Button type="submit" text="Laad meer" onClick={loadMorePosts} />
+      {lastPage !== currentPage && ( // Only show load more button if there are more pages to load.
+        <Button type="submit" text="Laad meer" onClick={loadMorePosts} />
+      )}
     </div>
   );
 };
