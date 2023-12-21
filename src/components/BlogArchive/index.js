@@ -51,16 +51,6 @@ const BlogArchive = () => {
     }
   };
 
-  // Increment the page number to load the next page of posts.
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  // Decrease the page number to load the previous page of posts.
-  const previousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
-
   useEffect(() => {
     fetchPosts();
     console.log('page from useEffect: ', currentPage);
