@@ -1,6 +1,6 @@
 const getFormattedDate = (date) => {
   // Fallback.
-  if (!date) {
+  if (!date || typeof date !== 'string') {
     return;
   }
 

@@ -18,7 +18,7 @@ const BlogArchive = () => {
           ({
             id,
             img_url: relativeImgPath,
-            created_at,
+            created_at: date,
             title,
             category,
             content,
@@ -26,7 +26,7 @@ const BlogArchive = () => {
             <BlogCard
               key={id}
               imageSrc={getFullImgUrl(relativeImgPath)}
-              date={getFormattedDate(created_at)}
+              date={getFormattedDate(date)}
               title={title}
               category={category.name}
               text={content}

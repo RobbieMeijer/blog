@@ -15,11 +15,11 @@ const BlogForm = () => {
     try {
       // Fallback: check if required fields are not empty.
       if (
-        '' !== title ||
-        '' !== content ||
-        '' !== categoryId ||
-        null !== fileInput ||
-        '' !== imageName
+        '' === title ||
+        '' === content ||
+        '' === categoryId ||
+        null === fileInput ||
+        '' === imageName
       ) {
         console.log('All fields are required');
         return;

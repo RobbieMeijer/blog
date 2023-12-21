@@ -77,6 +77,7 @@ const useFetchPosts = ({ perPage, fetchType }) => {
   useEffect(() => {
     // Initial fetch.
     fetchPosts();
+    // eslint-disable-next-line
   }, [currentPage]);
 
   return {

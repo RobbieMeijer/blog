@@ -1,6 +1,6 @@
 const getFullImgUrl = (relativePath) => {
   // Fallback.
-  if (!relativePath) {
+  if (!relativePath || typeof relativePath !== 'string') {
     return;
   }
 

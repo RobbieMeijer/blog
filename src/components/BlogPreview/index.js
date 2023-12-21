@@ -18,7 +18,7 @@ const BlogPreview = () => {
           ({
             id,
             img_url: relativeImgPath,
-            created_at,
+            created_at: date,
             title,
             category,
             content,
@@ -26,7 +26,7 @@ const BlogPreview = () => {
             <BlogCard
               key={id}
               imageSrc={getFullImgUrl(relativeImgPath)}
-              date={getFormattedDate(created_at)}
+              date={getFormattedDate(date)}
               title={title}
               category={category.name}
               text={content}
