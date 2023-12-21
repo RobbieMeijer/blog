@@ -42,7 +42,7 @@ const BlogPreview = () => {
       console.log('result: ', result);
 
       if (1 === currentPage) {
-        // Set first 4 posts in state.
+        // Set first posts in state.
         setPosts(posts);
       } else {
         setPosts((prevPosts) => [...prevPosts, ...posts]); // Append new posts to existing posts in state.

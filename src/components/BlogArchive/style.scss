@@ -2,4 +2,47 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    list-style: none;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 13px;
+
+    a[role='button'] {
+      line-height: 19px;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .disabled {
+      display: none;
+    }
+
+    .previous a,
+    .next a {
+      color: #f27623;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .active a {
+      color: #383838;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 4px 12px;
+      font-weight: bold;
+      background-color: #e7e7e7;
+      border-radius: 13px;
+    }
+  }
 }
