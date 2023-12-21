@@ -1,8 +1,8 @@
 import './style.scss';
 
-const BlogCard = ({ key, imageSrc, date, title, category, text }) => {
+const BlogCard = ({ id, imageSrc, date, title, category, text }) => {
   return (
-    <div key={key} className="blog-card">
+    <div key={id} className="blog-card">
       <div
         className="blog-card__image-container"
         style={{ backgroundImage: `url(${imageSrc})` }}
