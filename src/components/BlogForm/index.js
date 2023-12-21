@@ -1,35 +1,59 @@
-import { useState } from 'react'; // Add import statement for React library
+import React, { useEffect, useState } from 'react'; // Add import statement for React library
 import './style.scss';
 import Button from '../Button';
 
 const BlogForm = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [category, setCategory] = useState('');
-  const [image, setImage] = useState(null);
+  const [categoryId, setCategoryId] = useState('');
+  const [imageName, setImageName] = useState();
+  const [fileInput, setFileInput] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);
-    formData.append('category_id', category);
-    formData.append('image', image);
+    try {
+      // Fallback: check if required fields are not empty.
+      if (!title || !content || !categoryId || !fileInput || !imageName) {
+        console.log('All fields are required');
+        return;
+      }
 
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
-      },
-      body: formData,
-      redirect: 'follow',
-    };
+      // Set up form data
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('content', content);
+      formData.append('category_id', categoryId);
+      formData.append('image', fileInput, imageName);
 
-    fetch('https://frontend-case-api.sbdev.nl/api/posts', requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
+      // Define request options.
+      const requestOptions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow',
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+          token: `${process.env.REACT_APP_AUTH_TOKEN}`,
+        },
+      };
+
+      // Fetch posts data.
+      const response = await fetch(
+        'https://frontend-case-api.sbdev.nl/api/posts',
+        requestOptions
+      );
+
+      // Throw error if response is not ok.
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      // Get result from response.
+      const result = await response.text();
+      console.log('result: ', result);
+    } catch (error) {
+      console.log('error', error);
+    }
   };
 
   return (
@@ -52,20 +76,24 @@ const BlogForm = () => {
             />
           </fieldset>
           <fieldset className="blog-form__form-group">
-            <label className="blog-form__label" htmlFor="category">
+            <label className="blog-form__label" htmlFor="categoryId">
               Categorie
             </label>
             <select
               className="blog-form__category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              name="category"
+              value={categoryId}
+              onChange={({ target }) => {
+                setCategoryId(target?.value);
+                console.log('categoryId: ', categoryId);
+              }}
+              name="categoryId"
               required
             >
               <option value="">Geen categorie</option>
-              <option value="technology">Tech</option>
-              <option value="lifestyle">Lifestyle</option>
-              <option value="travel">Reizen</option>
+              <option value="1">Tech</option>
+              <option value="2">Nieuws</option>
+              <option value="3">Sports</option>
+              <option value="4">Lokaal</option>
             </select>
           </fieldset>
           <fieldset className="blog-form__form-group">
@@ -75,7 +103,10 @@ const BlogForm = () => {
             <input
               className="blog-form__image-input"
               type="file"
-              onChange={({ target }) => setImage(target?.files[0])}
+              onChange={({ target }) => {
+                setFileInput(target?.files[0]);
+                setImageName(target?.files[0]?.name);
+              }}
               name="image"
               required
             />
