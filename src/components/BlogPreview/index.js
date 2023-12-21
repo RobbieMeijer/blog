@@ -2,10 +2,12 @@ import './style.scss';
 import { useEffect, useState } from 'react';
 import BlogCard from '../BlogCard';
 import Button from '../Button';
+import getFullImgUrl from '../../functions/getFullImgUrl';
+import getFormattedDate from '../../functions/getformattedDate';
 
 const BlogPreview = () => {
   const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1); // Add a state for the current page
+  const [currentPage, setCurrentPage] = useState(1); // Add a state for the current page.
 
   const fetchPosts = async () => {
     // TODO: create custom hook / re-usable function for this.
@@ -21,7 +23,7 @@ const BlogPreview = () => {
 
     try {
       const response = await fetch(
-        `https://frontend-case-api.sbdev.nl/api/posts?page=${page}&perPage=4&sortBy=created_at&sortDirection=desc&ber`,
+        `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=4&sortBy=created_at&sortDirection=desc&ber`,
         requestOptions
       );
 
@@ -32,10 +34,11 @@ const BlogPreview = () => {
       const result = await response.json();
       console.log('result: ', result);
 
-      if (page === 1) {
+      if (1 === currentPage) {
+        // Set first 4 posts in state.
         setPosts(result.data);
       } else {
-        // Append new posts to existing posts
+        // Append new posts to existing posts in state.
         setPosts((prevPosts) => [...prevPosts, ...result.data]);
       }
     } catch (error) {
@@ -43,29 +46,39 @@ const BlogPreview = () => {
     }
   };
 
+  // Increment the page number to load the next page of posts.
+  const loadMorePosts = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
   useEffect(() => {
     fetchPosts();
-    console.log('page from useEffect: ', page);
+    console.log('page from useEffect: ', currentPage);
     console.log('posts from useEffect: ', posts);
-  }, [page]); // Call fetchPosts whenever the page changes
-
-  const loadMorePosts = () => {
-    setPage((prevPage) => prevPage + 1); // Increment the page number to load the next page
-  };
+  }, [currentPage]); // Call fetchPosts whenever the page changes.
 
   return (
     <div className="blog-preview">
       <div className="blog-preview__card-container">
-        {posts?.map(({ id, img_url, created_at, title, category, content }) => (
-          <BlogCard
-            key={id}
-            imageSrc={img_url}
-            date={created_at}
-            title={title}
-            category={category.name}
-            text={content}
-          />
-        ))}
+        {posts?.map(
+          ({
+            id,
+            img_url: relativeImgPath,
+            created_at,
+            title,
+            category,
+            content,
+          }) => (
+            <BlogCard
+              key={id}
+              imageSrc={getFullImgUrl(relativeImgPath)}
+              date={getFormattedDate(created_at)}
+              title={title}
+              category={category.name}
+              text={content}
+            />
+          )
+        )}
       </div>
       <Button type="submit" text="Laad meer" onClick={loadMorePosts} />
     </div>
