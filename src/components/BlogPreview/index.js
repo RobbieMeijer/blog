@@ -6,6 +6,7 @@ import getFormattedDate from '../../functions/getformattedDate';
 import useFetchPosts from '../../hooks/useFetchPosts';
 
 const BlogPreview = () => {
+  // Custom hook to fetch posts.
   const { posts, currentPage, lastPage, loadMorePosts } = useFetchPosts({
     perPage: 4,
     fetchType: 'loadmore',

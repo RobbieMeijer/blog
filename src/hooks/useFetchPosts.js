@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const useFetchPosts = ({ perPage, fetchType }) => {
+const useFetchPosts = ({ perPage, fetchType, category }) => {
+  // States.
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
@@ -32,7 +33,7 @@ const useFetchPosts = ({ perPage, fetchType }) => {
 
       // Fetch posts data.
       const response = await fetch(
-        `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=${perPage}&sortBy=created_at&sortDirection=desc&ber`,
+        `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=${perPage}&sortBy=created_at&sortDirection=desc&category=${category}&ber`,
         requestOptions
       );
 

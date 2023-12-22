@@ -1,19 +1,49 @@
-import { useState } from 'react'; // Add import statement for React library
 import './style.scss';
+import { useMemo, useRef, useState } from 'react';
 import Button from '../Button';
 
 const BlogForm = () => {
+  // States.
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [imageName, setImageName] = useState('');
   const [fileInput, setFileInput] = useState(null);
 
+  // Elements.
+  const titleElement = useRef(null);
+  const categoryIdElement = useRef(null);
+  const fileInputElement = useRef(null);
+  const contentElement = useRef(null);
+
+  // Check required form fields and show notification if empty.
+  const showRequiredFieldsNotification = ({
+    fieldState,
+    fieldElement,
+    fieldName,
+  }) => {
+    // Clear existing error message and red border.
+    fieldElement.current?.classList?.remove('required-field');
+    fieldElement.current?.nextSibling?.remove();
+
+    console.log('fieldState: ', fieldState);
+    console.log('fieldName: ', fieldName);
+    // Check field state.
+    if ('' === fieldState || null === fieldState) {
+      fieldElement.current?.classList.add('required-field');
+      fieldElement.current?.insertAdjacentHTML(
+        'afterend',
+        `<p class="notification">${fieldName} is leeg.</p>`
+      );
+    }
+  };
+
+  // Add handleSubmit function.
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Fallback: check if required fields are not empty.
+      // Fallback: prevent form submit if any required field is empty.
       if (
         '' === title ||
         '' === content ||
@@ -22,6 +52,27 @@ const BlogForm = () => {
         '' === imageName
       ) {
         console.log('All fields are required');
+        showRequiredFieldsNotification({
+          fieldState: title,
+          fieldElement: titleElement,
+          fieldName: 'titel',
+        });
+        showRequiredFieldsNotification({
+          fieldState: categoryId,
+          fieldElement: categoryIdElement,
+          fieldName: 'categorie',
+        });
+        showRequiredFieldsNotification({
+          fieldState: fileInput,
+          fieldElement: fileInputElement,
+          fieldName: 'afbeelding',
+        });
+        showRequiredFieldsNotification({
+          fieldState: content,
+          fieldElement: contentElement,
+          fieldName: 'bericht',
+        });
+
         return;
       }
 
@@ -56,7 +107,11 @@ const BlogForm = () => {
 
       // Get result from response.
       const result = await response.text();
-      console.log('result: ', result);
+
+      // Reload page after successful submit, to reset form + to show new post.
+      if (!!result) {
+        window.location.reload();
+      }
     } catch (error) {
       console.log('error', error);
     }
@@ -69,13 +124,21 @@ const BlogForm = () => {
         <form className="blog-form__form">
           <fieldset className="blog-form__form-group">
             <label className="blog-form__label" htmlFor="title">
-              Berichtnaam
+              *Berichtnaam
             </label>
             <input
+              ref={titleElement}
               className="blog-form__title"
               type="text"
               value={title}
-              onChange={({ target }) => setTitle(target?.value)}
+              onChange={({ target }) => {
+                setTitle(target?.value);
+                showRequiredFieldsNotification({
+                  fieldState: title,
+                  fieldElement: titleElement,
+                  fieldName: 'titel',
+                });
+              }}
               placeholder="Geen titel"
               name="title"
               required
@@ -83,14 +146,19 @@ const BlogForm = () => {
           </fieldset>
           <fieldset className="blog-form__form-group">
             <label className="blog-form__label" htmlFor="categoryId">
-              Categorie
+              *Categorie
             </label>
             <select
+              ref={categoryIdElement}
               className="blog-form__category"
               value={categoryId}
               onChange={({ target }) => {
                 setCategoryId(target?.value);
-                console.log('categoryId: ', categoryId);
+                showRequiredFieldsNotification({
+                  fieldState: categoryId,
+                  fieldElement: categoryIdElement,
+                  fieldName: 'categorie',
+                });
               }}
               name="categoryId"
               required
@@ -104,14 +172,20 @@ const BlogForm = () => {
           </fieldset>
           <fieldset className="blog-form__form-group">
             <label className="blog-form__label" htmlFor="image">
-              Header afbeelding
+              *Header afbeelding
             </label>
             <input
+              ref={fileInputElement}
               className="blog-form__image-input"
               type="file"
               onChange={({ target }) => {
                 setFileInput(target?.files[0]);
                 setImageName(target?.files[0]?.name);
+                showRequiredFieldsNotification({
+                  fieldState: fileInput,
+                  fieldElement: fileInputElement,
+                  fieldName: 'afbeelding',
+                });
               }}
               name="image"
               required
@@ -119,12 +193,20 @@ const BlogForm = () => {
           </fieldset>
           <fieldset className="blog-form__form-group">
             <label className="blog-form__label" htmlFor="content">
-              Bericht
+              *Bericht
             </label>
             <textarea
+              ref={contentElement}
               className="blog-form__content"
               value={content}
-              onChange={({ target }) => setContent(target?.value)}
+              onChange={({ target }) => {
+                setContent(target?.value);
+                showRequiredFieldsNotification({
+                  fieldState: content,
+                  fieldElement: contentElement,
+                  fieldName: 'bericht',
+                });
+              }}
               name="content"
               required
             />
