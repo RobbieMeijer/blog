@@ -27,7 +27,7 @@ const BlogForm = () => {
     fieldElement.current?.classList?.remove('required-field');
     fieldElement.current?.nextSibling?.remove();
 
-    // Check field state.
+    // Show notification.
     if ('' === fieldState || null === fieldState) {
       fieldElement.current?.classList.add('required-field');
       fieldElement.current?.insertAdjacentHTML(
@@ -35,6 +35,30 @@ const BlogForm = () => {
         `<p class="notification">${fieldName} is leeg.</p>`
       );
     }
+  };
+
+  // Run check required fields.
+  const checkAllRequiredFields = () => {
+    showRequiredFieldsNotification({
+      fieldState: title,
+      fieldElement: titleElement,
+      fieldName: 'titel',
+    });
+    showRequiredFieldsNotification({
+      fieldState: categoryId,
+      fieldElement: categoryIdElement,
+      fieldName: 'categorie',
+    });
+    showRequiredFieldsNotification({
+      fieldState: fileInput,
+      fieldElement: fileInputElement,
+      fieldName: 'afbeelding',
+    });
+    showRequiredFieldsNotification({
+      fieldState: content,
+      fieldElement: contentElement,
+      fieldName: 'bericht',
+    });
   };
 
   // Add handleSubmit function.
@@ -50,27 +74,7 @@ const BlogForm = () => {
         null === fileInput ||
         '' === imageName
       ) {
-        showRequiredFieldsNotification({
-          fieldState: title,
-          fieldElement: titleElement,
-          fieldName: 'titel',
-        });
-        showRequiredFieldsNotification({
-          fieldState: categoryId,
-          fieldElement: categoryIdElement,
-          fieldName: 'categorie',
-        });
-        showRequiredFieldsNotification({
-          fieldState: fileInput,
-          fieldElement: fileInputElement,
-          fieldName: 'afbeelding',
-        });
-        showRequiredFieldsNotification({
-          fieldState: content,
-          fieldElement: contentElement,
-          fieldName: 'bericht',
-        });
-
+        checkAllRequiredFields();
         return;
       }
 
@@ -121,26 +125,7 @@ const BlogForm = () => {
 
     // Run the inner code after the second render.
     if (renderCount.current > 2) {
-      showRequiredFieldsNotification({
-        fieldState: title,
-        fieldElement: titleElement,
-        fieldName: 'titel',
-      });
-      showRequiredFieldsNotification({
-        fieldState: categoryId,
-        fieldElement: categoryIdElement,
-        fieldName: 'categorie',
-      });
-      showRequiredFieldsNotification({
-        fieldState: fileInput,
-        fieldElement: fileInputElement,
-        fieldName: 'afbeelding',
-      });
-      showRequiredFieldsNotification({
-        fieldState: content,
-        fieldElement: contentElement,
-        fieldName: 'bericht',
-      });
+      checkAllRequiredFields();
     }
   }, [title, categoryId, fileInput, content]);
 
