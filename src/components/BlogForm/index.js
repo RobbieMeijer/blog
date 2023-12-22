@@ -1,5 +1,5 @@
 import './style.scss';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Button from '../Button';
 
 const BlogForm = () => {
@@ -15,6 +15,7 @@ const BlogForm = () => {
   const categoryIdElement = useRef(null);
   const fileInputElement = useRef(null);
   const contentElement = useRef(null);
+  const renderCount = useRef(0);
 
   // Check required form fields and show notification if empty.
   const showRequiredFieldsNotification = ({
@@ -26,8 +27,6 @@ const BlogForm = () => {
     fieldElement.current?.classList?.remove('required-field');
     fieldElement.current?.nextSibling?.remove();
 
-    console.log('fieldState: ', fieldState);
-    console.log('fieldName: ', fieldName);
     // Check field state.
     if ('' === fieldState || null === fieldState) {
       fieldElement.current?.classList.add('required-field');
@@ -51,7 +50,6 @@ const BlogForm = () => {
         null === fileInput ||
         '' === imageName
       ) {
-        console.log('All fields are required');
         showRequiredFieldsNotification({
           fieldState: title,
           fieldElement: titleElement,
@@ -117,6 +115,35 @@ const BlogForm = () => {
     }
   };
 
+  useEffect(() => {
+    // Increment the render count.
+    renderCount.current += 1;
+
+    // Run the inner code after the second render.
+    if (renderCount.current > 2) {
+      showRequiredFieldsNotification({
+        fieldState: title,
+        fieldElement: titleElement,
+        fieldName: 'titel',
+      });
+      showRequiredFieldsNotification({
+        fieldState: categoryId,
+        fieldElement: categoryIdElement,
+        fieldName: 'categorie',
+      });
+      showRequiredFieldsNotification({
+        fieldState: fileInput,
+        fieldElement: fileInputElement,
+        fieldName: 'afbeelding',
+      });
+      showRequiredFieldsNotification({
+        fieldState: content,
+        fieldElement: contentElement,
+        fieldName: 'bericht',
+      });
+    }
+  }, [title, categoryId, fileInput, content]);
+
   return (
     <aside className="blog__sidebar">
       <div className="blog-form">
@@ -131,14 +158,7 @@ const BlogForm = () => {
               className="blog-form__title"
               type="text"
               value={title}
-              onChange={({ target }) => {
-                setTitle(target?.value);
-                showRequiredFieldsNotification({
-                  fieldState: title,
-                  fieldElement: titleElement,
-                  fieldName: 'titel',
-                });
-              }}
+              onChange={({ target }) => setTitle(target.value)}
               placeholder="Geen titel"
               name="title"
               required
@@ -152,14 +172,7 @@ const BlogForm = () => {
               ref={categoryIdElement}
               className="blog-form__category"
               value={categoryId}
-              onChange={({ target }) => {
-                setCategoryId(target?.value);
-                showRequiredFieldsNotification({
-                  fieldState: categoryId,
-                  fieldElement: categoryIdElement,
-                  fieldName: 'categorie',
-                });
-              }}
+              onChange={({ target }) => setCategoryId(target.value)}
               name="categoryId"
               required
             >
@@ -179,13 +192,8 @@ const BlogForm = () => {
               className="blog-form__image-input"
               type="file"
               onChange={({ target }) => {
-                setFileInput(target?.files[0]);
-                setImageName(target?.files[0]?.name);
-                showRequiredFieldsNotification({
-                  fieldState: fileInput,
-                  fieldElement: fileInputElement,
-                  fieldName: 'afbeelding',
-                });
+                setFileInput(target.files[0]);
+                setImageName(target.files[0]?.name);
               }}
               name="image"
               required
@@ -199,14 +207,7 @@ const BlogForm = () => {
               ref={contentElement}
               className="blog-form__content"
               value={content}
-              onChange={({ target }) => {
-                setContent(target?.value);
-                showRequiredFieldsNotification({
-                  fieldState: content,
-                  fieldElement: contentElement,
-                  fieldName: 'bericht',
-                });
-              }}
+              onChange={({ target }) => setContent(target.value)}
               name="content"
               required
             />

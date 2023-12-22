@@ -27,7 +27,6 @@ const useFetchPosts = ({ perPage, fetchType, categoryId }) => {
         typeof fetchType !== 'string' ||
         !['loadmore', 'pagination', 'categories'].includes(fetchType)
       ) {
-        console.log('Invalid input');
         return;
       }
 
@@ -64,10 +63,10 @@ const useFetchPosts = ({ perPage, fetchType, categoryId }) => {
           const categoryPosts = posts?.filter(
             ({ category_id }) => category_id === categoryId
           );
-          setPosts(categoryPosts);
+          if (!!categoryPosts) setPosts(categoryPosts);
           break;
         default:
-          break;
+          setPosts(posts);
       }
 
       // Set last page in state, if last page is equel to current page, load more button is not required.
@@ -82,13 +81,10 @@ const useFetchPosts = ({ perPage, fetchType, categoryId }) => {
   };
 
   useEffect(() => {
-    console.log('posts: ', posts);
-    console.log('categoryId: ', categoryId);
-
     // Initial fetch.
     fetchPosts();
     // eslint-disable-next-line
-  }, [currentPage, categoryId]);
+  }, [currentPage, categoryId, perPage]);
 
   return {
     posts,

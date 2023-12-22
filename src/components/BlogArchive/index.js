@@ -4,7 +4,7 @@ import BlogCard from '../BlogCard';
 import getFullImgUrl from '../../functions/getFullImgUrl';
 import getFormattedDate from '../../functions/getformattedDate';
 import useFetchPosts from '../../hooks/useFetchPosts';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const BlogArchive = () => {
   // State.
@@ -21,12 +21,7 @@ const BlogArchive = () => {
   // Filter posts by category.
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    // setCurrentPage(1); // Reset to the first page when category changes
   };
-
-  useEffect(() => {
-    console.log('selectedCategory: ', selectedCategory);
-  }, [selectedCategory]);
 
   return (
     <>
