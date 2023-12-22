@@ -6,10 +6,19 @@
   &__filters {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-size: 12px;
     letter-spacing: 0;
     line-height: 19px;
+
+    select {
+      line-height: 1rem;
+      padding: 0.75rem 1rem;
+      background-color: #fca56b;
+      border: 1px;
+      border-radius: 0;
+      font-size: 12px;
+    }
   }
 
   &__pagination {

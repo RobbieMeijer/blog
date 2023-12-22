@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useFetchPosts = ({ perPage, fetchType, category }) => {
+const useFetchPosts = ({ perPage, fetchType, categoryId }) => {
   // States.
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +25,7 @@ const useFetchPosts = ({ perPage, fetchType, category }) => {
         !fetchType ||
         typeof perPage !== 'number' ||
         typeof fetchType !== 'string' ||
-        !['loadmore', 'pagination'].includes(fetchType)
+        !['loadmore', 'pagination', 'categories'].includes(fetchType)
       ) {
         console.log('Invalid input');
         return;
@@ -33,7 +33,7 @@ const useFetchPosts = ({ perPage, fetchType, category }) => {
 
       // Fetch posts data.
       const response = await fetch(
-        `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=${perPage}&sortBy=created_at&sortDirection=desc&category=${category}&ber`,
+        `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=${perPage}&sortBy=created_at&sortDirection=desc&ber`,
         requestOptions
       );
 
@@ -60,6 +60,12 @@ const useFetchPosts = ({ perPage, fetchType, category }) => {
         case 'pagination':
           setPosts(posts);
           break;
+        case 'categories':
+          const categoryPosts = posts?.filter(
+            ({ category_id }) => category_id === categoryId
+          );
+          setPosts(categoryPosts);
+          break;
         default:
           break;
       }
@@ -76,10 +82,13 @@ const useFetchPosts = ({ perPage, fetchType, category }) => {
   };
 
   useEffect(() => {
+    console.log('posts: ', posts);
+    console.log('categoryId: ', categoryId);
+
     // Initial fetch.
     fetchPosts();
     // eslint-disable-next-line
-  }, [currentPage]);
+  }, [currentPage, categoryId]);
 
   return {
     posts,

@@ -9,12 +9,13 @@ import { useEffect, useState } from 'react';
 const BlogArchive = () => {
   // State.
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [fetchType, setFetchType] = useState('pagination');
 
   // Custom hook to fetch posts.
   const { posts, setCurrentPage, lastPage } = useFetchPosts({
     perPage: 8,
-    fetchType: 'pagination',
-    category: selectedCategory,
+    fetchType: fetchType,
+    categoryId: parseInt(selectedCategory),
   });
 
   // Filter posts by category.
@@ -30,17 +31,18 @@ const BlogArchive = () => {
   return (
     <>
       <div className="blog-archive__filters">
-        <label htmlFor="category">Filter op categorie:</label>
         <select
-          id="category"
           value={selectedCategory || ''}
-          onChange={({ target }) => handleCategoryChange(target?.value)}
+          onChange={({ target }) => {
+            handleCategoryChange(target?.value);
+            setFetchType('categories');
+          }}
         >
-          <option value="">All Categories</option>
-          <option value="1">Tech</option>
-          <option value="2">Nieuws</option>
-          <option value="3">Sports</option>
-          <option value="4">Lokaal</option>
+          <option value="">Alle categorieën</option>
+          <option value="1">Categorie Tech</option>
+          <option value="2">Categorie Nieuws</option>
+          <option value="3">Categorie Sports</option>
+          <option value="4">Categorie Lokaal</option>
         </select>
       </div>
       <div className="blog-archive">
