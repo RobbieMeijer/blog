@@ -93,6 +93,21 @@ const BlogForm = () => {
     }
   };
 
+  // Define upload image function.
+  const uploadImg = async (target) => {
+    // Define file.
+    const file = await target?.files[0];
+
+    if (!!file && file.type.includes('image/')) {
+      // Set file input and image name in state if file is an image.
+      setFileInput(file);
+      setImageName(file?.name);
+    } else {
+      // Run required fields check again if not an image.
+      initRequiredFieldsCheck();
+    }
+  };
+
   useEffect(() => {
     // Increment the render count.
     renderCount.current += 1;
@@ -151,8 +166,7 @@ const BlogForm = () => {
               className="blog-form__image-input"
               type="file"
               onChange={({ target }) => {
-                setFileInput(target.files[0]);
-                setImageName(target.files[0]?.name);
+                uploadImg(target);
               }}
               name="image"
               required
