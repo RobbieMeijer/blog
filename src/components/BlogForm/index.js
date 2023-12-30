@@ -1,6 +1,8 @@
 import './style.scss';
 import { useEffect, useRef, useState } from 'react';
 import Button from '../Button';
+import showRequiredFieldsNotification from '../../functions/showRequiredFieldsNotification';
+import someFieldsAreEmpty from '../../functions/someFieldsAreEmpty';
 
 const BlogForm = () => {
   // States.
@@ -17,48 +19,30 @@ const BlogForm = () => {
   const contentElement = useRef(null);
   const renderCount = useRef(0);
 
-  // Check required form fields and show notification if empty.
-  const showRequiredFieldsNotification = ({
-    fieldState,
-    fieldElement,
-    fieldName,
-  }) => {
-    // Clear existing error message and red border.
-    fieldElement.current?.classList?.remove('required-field');
-    fieldElement.current?.nextSibling?.remove();
-
-    // Show notification.
-    if ('' === fieldState || null === fieldState) {
-      fieldElement.current?.classList.add('required-field');
-      fieldElement.current?.insertAdjacentHTML(
-        'afterend',
-        `<p class="notification">${fieldName} is leeg.</p>`
-      );
-    }
-  };
-
   // Run check required fields.
-  const checkAllRequiredFields = () => {
-    showRequiredFieldsNotification({
-      fieldState: title,
-      fieldElement: titleElement,
-      fieldName: 'titel',
-    });
-    showRequiredFieldsNotification({
-      fieldState: categoryId,
-      fieldElement: categoryIdElement,
-      fieldName: 'categorie',
-    });
-    showRequiredFieldsNotification({
-      fieldState: fileInput,
-      fieldElement: fileInputElement,
-      fieldName: 'afbeelding',
-    });
-    showRequiredFieldsNotification({
-      fieldState: content,
-      fieldElement: contentElement,
-      fieldName: 'bericht',
-    });
+  const initRequiredFieldsCheck = () => {
+    showRequiredFieldsNotification([
+      {
+        fieldState: title,
+        fieldElement: titleElement,
+        fieldName: 'titel',
+      },
+      {
+        fieldState: categoryId,
+        fieldElement: categoryIdElement,
+        fieldName: 'categorie',
+      },
+      {
+        fieldState: fileInput,
+        fieldElement: fileInputElement,
+        fieldName: 'afbeelding',
+      },
+      {
+        fieldState: content,
+        fieldElement: contentElement,
+        fieldName: 'bericht',
+      },
+    ]);
   };
 
   // Add handleSubmit function.
@@ -67,14 +51,8 @@ const BlogForm = () => {
 
     try {
       // Fallback: prevent form submit if any required field is empty.
-      if (
-        '' === title ||
-        '' === content ||
-        '' === categoryId ||
-        null === fileInput ||
-        '' === imageName
-      ) {
-        checkAllRequiredFields();
+      if (someFieldsAreEmpty([title, categoryId, fileInput, content])) {
+        initRequiredFieldsCheck();
         return;
       }
 
@@ -102,11 +80,6 @@ const BlogForm = () => {
         requestOptions
       );
 
-      // Throw error if response is not ok.
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-
       // Get result from response.
       const result = await response.text();
 
@@ -116,6 +89,7 @@ const BlogForm = () => {
       }
     } catch (error) {
       console.log('error', error);
+      return;
     }
   };
 
@@ -125,7 +99,7 @@ const BlogForm = () => {
 
     // Run the inner code after the second render.
     if (renderCount.current > 2) {
-      checkAllRequiredFields();
+      initRequiredFieldsCheck();
     }
   }, [title, categoryId, fileInput, content]);
 

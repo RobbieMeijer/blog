@@ -19,7 +19,7 @@ const useFetchPosts = ({ perPage, fetchType, categoryId }) => {
     };
 
     try {
-      // Fallback: check if required fields are not empty and of correct type and correct value.
+      // Fallback: check if required parameters are not empty and of correct type and correct value.
       if (
         !perPage ||
         !fetchType ||
@@ -35,11 +35,6 @@ const useFetchPosts = ({ perPage, fetchType, categoryId }) => {
         `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=${perPage}&sortBy=created_at&sortDirection=desc&ber`,
         requestOptions
       );
-
-      // Throw error if response is not ok.
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
 
       // Get json formatted data from response.
       const result = await response.json();
@@ -73,6 +68,7 @@ const useFetchPosts = ({ perPage, fetchType, categoryId }) => {
       setLastPage(last_page);
     } catch (error) {
       console.log('error', error);
+      return;
     }
   };
 

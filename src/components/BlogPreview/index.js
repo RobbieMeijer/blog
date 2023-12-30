@@ -36,7 +36,7 @@ const BlogPreview = () => {
         )}
       </div>
       {lastPage !== currentPage && (
-        <Button type="submit" text="Laad meer" onClick={loadMorePosts} />
+        <Button type="button" text="Laad meer" onClick={loadMorePosts} />
       )}
     </div>
   );
