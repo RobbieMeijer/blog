@@ -101,7 +101,7 @@ const BlogForm = () => {
     if (!!file && file.type.includes('image/')) {
       // Set file input and image name in state if file is an image.
       setFileInput(file);
-      setImageName(file?.name);
+      setImageName(file.name);
     } else {
       // Run required fields check again if not an image.
       initRequiredFieldsCheck();
