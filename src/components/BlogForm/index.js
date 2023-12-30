@@ -5,12 +5,14 @@ import showRequiredFieldsNotification from '../../functions/showRequiredFieldsNo
 import someFieldsAreEmpty from '../../functions/someFieldsAreEmpty';
 
 const BlogForm = () => {
-  // States.
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [categoryId, setCategoryId] = useState('');
-  const [imageName, setImageName] = useState('');
-  const [fileInput, setFileInput] = useState(null);
+  // State.
+  const [form, setForm] = useState({
+    title: '',
+    content: '',
+    categoryId: '',
+    fileInput: null,
+    imageName: '',
+  });
 
   // Elements.
   const titleElement = useRef(null);
@@ -23,22 +25,22 @@ const BlogForm = () => {
   const initRequiredFieldsCheck = () => {
     showRequiredFieldsNotification([
       {
-        fieldState: title,
+        fieldState: form.title,
         fieldElement: titleElement,
         fieldName: 'titel',
       },
       {
-        fieldState: categoryId,
+        fieldState: form.categoryId,
         fieldElement: categoryIdElement,
         fieldName: 'categorie',
       },
       {
-        fieldState: fileInput,
+        fieldState: form.fileInput,
         fieldElement: fileInputElement,
         fieldName: 'afbeelding',
       },
       {
-        fieldState: content,
+        fieldState: form.content,
         fieldElement: contentElement,
         fieldName: 'bericht',
       },
@@ -51,17 +53,24 @@ const BlogForm = () => {
 
     try {
       // Fallback: prevent form submit if any required field is empty.
-      if (someFieldsAreEmpty([title, categoryId, fileInput, content])) {
+      if (
+        someFieldsAreEmpty([
+          form.title,
+          form.categoryId,
+          form.fileInput,
+          form.content,
+        ])
+      ) {
         initRequiredFieldsCheck();
         return;
       }
 
       // Set up form data.
       const formData = new FormData();
-      formData.append('title', title);
-      formData.append('content', content);
-      formData.append('category_id', categoryId);
-      formData.append('image', fileInput, imageName);
+      formData.append('title', form.title);
+      formData.append('content', form.content);
+      formData.append('category_id', form.categoryId);
+      formData.append('image', form.fileInput, form.imageName);
 
       // Define request options.
       const requestOptions = {
@@ -100,8 +109,11 @@ const BlogForm = () => {
 
     if (!!file && file.type.includes('image/')) {
       // Set file input and image name in state if file is an image.
-      setFileInput(file);
-      setImageName(file.name);
+      setForm((prevForm) => ({
+        ...prevForm,
+        fileInput: file,
+        imageName: file.name,
+      }));
     } else {
       // Run required fields check again if not an image.
       initRequiredFieldsCheck();
@@ -116,7 +128,7 @@ const BlogForm = () => {
     if (renderCount.current > 2) {
       initRequiredFieldsCheck();
     }
-  }, [title, categoryId, fileInput, content]);
+  }, [form.title, form.categoryId, form.fileInput, form.content]);
 
   return (
     <aside className="blog__sidebar">
@@ -131,8 +143,10 @@ const BlogForm = () => {
               ref={titleElement}
               className="blog-form__title"
               type="text"
-              value={title}
-              onChange={({ target }) => setTitle(target.value)}
+              value={form.title}
+              onChange={({ target }) =>
+                setForm((prevForm) => ({ ...prevForm, title: target?.value }))
+              }
               placeholder="Geen titel"
               name="title"
               required
@@ -145,8 +159,13 @@ const BlogForm = () => {
             <select
               ref={categoryIdElement}
               className="blog-form__category"
-              value={categoryId}
-              onChange={({ target }) => setCategoryId(target.value)}
+              value={form.categoryId}
+              onChange={({ target }) =>
+                setForm((prevForm) => ({
+                  ...prevForm,
+                  categoryId: target?.value,
+                }))
+              }
               name="categoryId"
               required
             >
@@ -179,8 +198,10 @@ const BlogForm = () => {
             <textarea
               ref={contentElement}
               className="blog-form__content"
-              value={content}
-              onChange={({ target }) => setContent(target.value)}
+              value={form.content}
+              onChange={({ target }) =>
+                setForm((prevForm) => ({ ...prevForm, content: target?.value }))
+              }
               name="content"
               required
             />
