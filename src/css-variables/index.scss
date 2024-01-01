@@ -1,0 +1,54 @@
+:root {
+  // Colors.
+  --sb-color-orange: #f27623;
+  --sb-color-red: #ff0000;
+  --sb-color-white: #ffffff;
+  --sb-color-grey-1: #fafafa;
+  --sb-color-grey-2: #f3f3f3;
+  --sb-color-grey-3: #e7e7e7;
+  --sb-color-grey-4: #868686;
+  --sb-color-grey-5: #383838;
+  --sb-color-grey-6: #2b2b2b;
+  --sb-color-grey-7: #262626;
+  --sb-color-black: #000000;
+
+  // Font sizes.
+  --sb-font-size-xs: 0.5em;
+  --sb-font-size-s: 0.75em;
+  --sb-font-size-m: 0.875em;
+  --sb-font-size-l: 1.125em;
+  --sb-font-size-xl: 1.5em;
+
+  // Font weights.
+  --sb-font-weight-regular: normal;
+  --sb-font-weight-bold: bold;
+
+  // Font family.
+  --sb-font-family: 'Inter', sans-serif;
+
+  // Line heights.
+  --sb-line-height-xs: 0.625em;
+  --sb-line-height-s: 0.8125em;
+  --sb-line-height-m: 1em;
+  --sb-line-height-l: 1.25em;
+  --sb-line-height-xl: 1.75em;
+
+  // Spacing.
+  --sb-space-xxs: 0.25rem;
+  --sb-space-xs: 0.5rem;
+  --sb-space-s: 0.75rem;
+  --sb-space-m: 1rem;
+  --sb-space-l: 1.25rem;
+  --sb-space-xl: 1.5rem;
+  --sb-space-xxl: 2rem;
+
+  // Border radius.
+  --sb-border-radius-s: 0.25rem;
+  --sb-border-radius-m: 0.625rem;
+  --sb-border-radius-ml: 0.8125rem;
+  --sb-border-radius-l: 1.25rem;
+
+  // Layout.
+  --sb-max-width-content: 1116px;
+  --sb-max-width-site: 1440px;
+}

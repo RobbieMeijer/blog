@@ -1,11 +1,11 @@
 .blog-form {
-  padding: 1.5rem;
+  padding: var(--sb-space-xl);
 
   &__heading {
-    color: #2b2b2b;
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 2rem;
+    color: var(--sb-color-grey-7);
+    font-size: var(--sb-font-size-xl);
+    font-weight: var(--sb-font-weight-bold);
+    line-height: var(--sb-line-height-l);
     margin-top: 0;
   }
 
@@ -13,30 +13,30 @@
     border: none;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--sb-space-xs);
     padding: 0;
-    margin: 0 0 1.5rem;
+    margin: 0 0 var(--sb-space-xl);
 
     input,
     select,
     textarea {
-      line-height: 1rem;
-      padding: 0.75rem 1rem;
-      background-color: #fafafa;
+      line-height: var(--sb-line-height-m);
+      padding: var(--sb-space-s) var(--sb-space-m);
+      background-color: var(--sb-color-grey-1);
       border: 1px;
-      border-radius: 0;
+      border-radius: var(--sb-border-radius-s);
     }
   }
 
   &__label,
   .notification {
-    color: #404040;
-    font-size: 12px;
-    line-height: 1rem;
+    color: var(--sb-color-grey-5);
+    font-size: var(--sb-font-size-s);
+    line-height: var(--sb-line-height-m);
   }
 
   .notification {
-    color: red;
+    color: var(--sb-color-red);
     margin-top: 0;
 
     &::first-letter {
@@ -45,11 +45,11 @@
   }
 
   .required-field {
-    border: 1px solid red;
+    border: 1px solid var(--sb-color-red);
   }
 
   &__title {
-    font-size: 12px;
+    font-size: var(--sb-font-size-s);
     font-style: italic;
     letter-spacing: 0;
   }
@@ -59,8 +59,7 @@
   }
 
   &__image-input {
-    border-radius: 10px;
-    background-color: #7d7d7d;
+    border-radius: var(--sb-border-radius-m);
   }
 
   &__content {

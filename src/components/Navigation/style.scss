@@ -2,11 +2,11 @@
   margin-left: auto;
 
   &__list {
-    margin: 1rem 0;
+    margin: var(--sb-space-m) 0;
     padding: 0;
 
     display: inline-flex;
-    gap: 2rem;
+    gap: var(--sb-space-xxl);
   }
 
   &__list-item {
@@ -14,18 +14,18 @@
   }
 
   &__link {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
+    color: var(--sb-color-white);
+    font-size: var(--sb-font-size-l);
+    font-weight: var(--sb-font-weight-bold);
     letter-spacing: 0;
-    line-height: 1.25rem;
+    line-height: var(--sb-line-height-l);
     text-decoration: none;
     display: block;
 
     &::after {
       content: '';
       display: block;
-      background-color: #e95e30;
+      background-color: var(--sb-color-orange);
       height: 2px;
       width: 100%;
       margin-top: 3px;

@@ -1,14 +1,17 @@
+@import './css-variables/index.scss';
+
 body {
   margin: 0;
 }
 
 .blog {
-  font-family: 'Inter', sans-serif;
-  background-color: #f3f3f3;
+  font-family: var(--sb-font-family);
+  font-weight: var(--sb-font-weight-regular);
+  background-color: var(--sb-color-grey-2);
 
   &__header {
     width: 100%;
-    max-width: 1440px;
+    max-width: var(--sb-max-width-site);
     height: 208px;
     background: url('./assets/bg-header.png') no-repeat center center;
     background-size: cover;
@@ -16,10 +19,10 @@ body {
   }
 
   &__header-container {
-    width: calc(100% - 2rem);
-    max-width: 1116px;
+    width: calc(100% - var(--sb-space-xxl));
+    max-width: var(--sb-max-width-content);
     flex-direction: column;
-    padding: 2rem 1rem;
+    padding: var(--sb-space-xxl) var(--sb-space-m);
     margin: 0 auto;
     display: flex;
 
@@ -35,9 +38,9 @@ body {
 
   &__content {
     width: 100%;
-    max-width: 1116px;
-    margin: 4rem auto;
-    gap: 1.5rem;
+    max-width: var(--sb-max-width-content);
+    margin: calc(2 * var(--sb-space-xxl)) auto;
+    gap: var(--sb-space-xl);
 
     @media (min-width: 768px) {
       display: flex;
@@ -45,7 +48,7 @@ body {
   }
 
   &__sidebar {
-    background-color: #ffffff;
+    background-color: var(--sb-color-white);
   }
 
   &__sidebar {
@@ -63,12 +66,12 @@ body {
   &__footer {
     height: 32px;
     width: 100%;
-    max-width: 1440px;
+    max-width: var(--sb-max-width-site);
     margin: 0 auto;
     text-align: center;
-    background-color: #262626;
-    color: #ffffff;
-    font-size: 12px;
-    line-height: 2rem;
+    background-color: var(--sb-color-grey-7);
+    color: var(--sb-color-white);
+    font-size: var(--sb-font-size-s);
+    line-height: var(--sb-line-height-l);
   }
 }

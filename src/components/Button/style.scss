@@ -1,12 +1,12 @@
 .blog__btn {
-  border-radius: 20px;
-  background-color: #f27623;
+  border-radius: var(--sb-border-radius-l);
+  background-color: var(--sb-color-orange);
   border: 0;
-  padding: 12px 48px;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1rem;
+  padding: var(--sb-space-s) calc(2 * var(--sb-space-xl));
+  color: var(--sb-color-white);
+  font-size: var(--sb-font-size-s);
+  font-weight: var(--sb-font-weight-bold);
+  line-height: var(--sb-line-height-m);
   width: fit-content;
   display: flex;
   align-self: center;

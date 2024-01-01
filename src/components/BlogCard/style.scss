@@ -20,42 +20,42 @@
   }
 
   &__meta {
-    color: #ffffff;
-    font-size: 8px;
+    color: var(--sb-color-white);
+    font-size: var(--sb-font-size-xs);
     font-style: italic;
-    line-height: 10px;
+    line-height: var(--sb-line-height-xs);
     position: absolute;
     width: inherit;
-    bottom: 0.5rem;
+    bottom: var(--sb-space-xs);
   }
 
   &__date {
     float: left;
-    margin-left: 1rem;
+    margin-left: var(--sb-space-m);
   }
 
   &__category {
     float: right;
-    margin-right: 1rem;
+    margin-right: var(--sb-space-m);
   }
 
   &__caption {
-    padding: 1rem;
+    padding: var(--sb-space-m);
   }
 
   &__heading {
-    color: #262626;
-    font-size: 24px;
-    font-weight: bold;
+    color: var(--sb-color-grey-5);
+    font-size: var(--sb-font-size-xl);
+    font-weight: var(--sb-font-weight-bold);
     letter-spacing: 0;
-    line-height: 2rem;
+    line-height: var(--sb-line-height-l);
     margin: 0;
   }
 
   &__paragraph {
-    color: #868686;
-    font-size: 12px;
+    color: var(--sb-color-grey-4);
+    font-size: var(--sb-font-size-s);
     letter-spacing: 0;
-    line-height: 1.25rem;
+    line-height: var(--sb-line-height-xl);
   }
 }

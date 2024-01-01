@@ -1,11 +1,11 @@
 .blog-preview {
-  padding: 1.5rem;
-  background-color: #ffffff;
+  padding: var(--sb-space-xl);
+  background-color: var(--sb-color-white);
 
   &__card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-    gap: 1.5rem;
+    gap: var(--sb-space-xl);
 
     @media (min-width: 960px) {
       grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
@@ -13,7 +13,7 @@
   }
 
   .blog__btn {
-    margin-top: 1.5rem;
+    margin-top: var(--sb-space-xl);
     display: flex;
     align-self: center;
   }
