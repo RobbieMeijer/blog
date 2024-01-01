@@ -177,19 +177,43 @@ const BlogForm = () => {
             </select>
           </fieldset>
           <fieldset className="blog-form__form-group">
-            <label className="blog-form__label" htmlFor="image">
+            <legend className="blog-form__label blog-form__label-image">
               *Header afbeelding
-            </label>
-            <input
+            </legend>
+            <div
               ref={fileInputElement}
-              className="blog-form__image-input"
-              type="file"
-              onChange={({ target }) => {
-                uploadImg(target);
-              }}
-              name="image"
-              required
-            />
+              className="blog-form__image-upload-container"
+            >
+              <svg
+                className="blog-form__image-upload-icon"
+                aria-hidden="true"
+                focusable="false"
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                width="1em"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"
+                />
+              </svg>
+              <label
+                className="blog-form__image-upload-button"
+                htmlFor="imageUploadInput"
+              >
+                Kies bestand
+              </label>
+              <input
+                className="blog-form__image-upload-input"
+                type="file"
+                onChange={({ target }) => {
+                  uploadImg(target);
+                }}
+                name="imageUploadInput"
+                required
+              />
+            </div>
           </fieldset>
           <fieldset className="blog-form__form-group">
             <label className="blog-form__label" htmlFor="content">
