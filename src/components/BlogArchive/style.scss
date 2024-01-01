@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: var(--sb-space-xl);
-  min-height: 600px;
+  min-height: 300px;
 
   &__filters {
     display: flex;
