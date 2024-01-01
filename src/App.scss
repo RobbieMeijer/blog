@@ -74,4 +74,20 @@ body {
     font-size: var(--sb-font-size-s);
     line-height: var(--sb-line-height-l);
   }
+
+  &__loading {
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    animation: rotate 0.5s infinite linear; // Add animation property
+  }
 }

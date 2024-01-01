@@ -4,6 +4,7 @@ import BlogCard from '../BlogCard';
 import getFullImgUrl from '../../functions/getFullImgUrl';
 import getFormattedDate from '../../functions/getformattedDate';
 import useFetchPosts from '../../hooks/useFetchPosts';
+import blogLoading from '../../assets/blog-loading.svg';
 
 const BlogArchive = () => {
   // Custom hook to fetch posts.
@@ -15,6 +16,7 @@ const BlogArchive = () => {
     setSortDirection,
     postsPerPage,
     setPostsPerPage,
+    isLoading,
   } = useFetchPosts({
     perPage: 8,
     fetchType: 'pagination',
@@ -63,23 +65,31 @@ const BlogArchive = () => {
         </div>
       </div>
       <div className="blog-archive">
-        {posts?.map(
-          ({
-            id,
-            img_url: relativeImgPath,
-            created_at: date,
-            title,
-            category,
-            content,
-          }) => (
-            <BlogCard
-              key={id}
-              imageSrc={getFullImgUrl(relativeImgPath)}
-              date={getFormattedDate(date)}
-              title={title}
-              category={category.name}
-              text={content}
-            />
+        {isLoading ? (
+          <img
+            src={blogLoading}
+            alt="Loading posts"
+            className="blog__loading"
+          />
+        ) : (
+          posts?.map(
+            ({
+              id,
+              img_url: relativeImgPath,
+              created_at: date,
+              title,
+              category,
+              content,
+            }) => (
+              <BlogCard
+                key={id}
+                imageSrc={getFullImgUrl(relativeImgPath)}
+                date={getFormattedDate(date)}
+                title={title}
+                category={category.name}
+                text={content}
+              />
+            )
           )
         )}
       </div>

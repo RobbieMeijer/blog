@@ -8,6 +8,7 @@ const useFetchPosts = ({ perPage, fetchType }) => {
   const [lastPage, setLastPage] = useState(1);
   const [sortDirection, setSortDirection] = useState('desc');
   const [postsPerPage, setPostsPerPage] = useState(perPage || 4);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchPosts = async () => {
     // Define request options.
@@ -64,6 +65,8 @@ const useFetchPosts = ({ perPage, fetchType }) => {
 
       // Set last page in state, if last page is equel to current page, load more button is not required.
       setLastPage(last_page);
+
+      setIsLoading(false);
     } catch (error) {
       console.log('error', error);
       return;
@@ -90,6 +93,7 @@ const useFetchPosts = ({ perPage, fetchType }) => {
     setSortDirection,
     postsPerPage,
     setPostsPerPage,
+    isLoading,
   };
 };
 

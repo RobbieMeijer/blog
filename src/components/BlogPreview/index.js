@@ -4,34 +4,44 @@ import Button from '../Button';
 import getFullImgUrl from '../../functions/getFullImgUrl';
 import getFormattedDate from '../../functions/getformattedDate';
 import useFetchPosts from '../../hooks/useFetchPosts';
+import blogLoading from '../../assets/blog-loading.svg';
 
 const BlogPreview = () => {
   // Custom hook to fetch posts.
-  const { posts, currentPage, lastPage, loadMorePosts } = useFetchPosts({
-    perPage: 4,
-    fetchType: 'loadmore',
-  });
+  const { posts, currentPage, lastPage, loadMorePosts, isLoading } =
+    useFetchPosts({
+      perPage: 4,
+      fetchType: 'loadmore',
+    });
 
   return (
     <div className="blog-preview">
       <div className="blog-preview__card-container">
-        {posts?.map(
-          ({
-            id,
-            img_url: relativeImgPath,
-            created_at: date,
-            title,
-            category,
-            content,
-          }) => (
-            <BlogCard
-              key={id}
-              imageSrc={getFullImgUrl(relativeImgPath)}
-              date={getFormattedDate(date)}
-              title={title}
-              category={category.name}
-              text={content}
-            />
+        {isLoading ? (
+          <img
+            src={blogLoading}
+            alt="Loading posts"
+            className="blog__loading"
+          />
+        ) : (
+          posts?.map(
+            ({
+              id,
+              img_url: relativeImgPath,
+              created_at: date,
+              title,
+              category,
+              content,
+            }) => (
+              <BlogCard
+                key={id}
+                imageSrc={getFullImgUrl(relativeImgPath)}
+                date={getFormattedDate(date)}
+                title={title}
+                category={category.name}
+                text={content}
+              />
+            )
           )
         )}
       </div>
