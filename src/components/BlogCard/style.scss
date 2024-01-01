@@ -43,6 +43,12 @@
     padding: var(--sb-space-m);
   }
 
+  &__heading,
+  &__paragraph {
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
   &__heading {
     color: var(--sb-color-grey-5);
     font-size: var(--sb-font-size-xl);

@@ -25,6 +25,11 @@
       background-color: var(--sb-color-grey-1);
       border: 1px;
       border-radius: var(--sb-border-radius-s);
+      font-family: var(--sb-font-family);
+    }
+
+    textarea.blog-form__content {
+      line-height: var(--sb-line-height-xl);
     }
   }
 
@@ -50,12 +55,7 @@
 
   &__title {
     font-size: var(--sb-font-size-s);
-    font-style: italic;
     letter-spacing: 0;
-  }
-
-  &__category {
-    font-style: italic;
   }
 
   &__label-image {

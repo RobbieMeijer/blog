@@ -95,8 +95,8 @@ const BlogArchive = () => {
       </div>
       <div className="blog-archive__pagination-container">
         <ReactPaginate
-          previousLabel={'<- Vorige pagina'}
-          nextLabel={'Volgende pagina ->'}
+          previousLabel={'< Vorige pagina'}
+          nextLabel={'Volgende pagina >'}
           breakLabel={'...'}
           breakClassName={'break-me'}
           pageCount={lastPage}
