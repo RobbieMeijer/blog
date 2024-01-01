@@ -4,41 +4,63 @@ import BlogCard from '../BlogCard';
 import getFullImgUrl from '../../functions/getFullImgUrl';
 import getFormattedDate from '../../functions/getformattedDate';
 import useFetchPosts from '../../hooks/useFetchPosts';
-import { useState } from 'react';
 
 const BlogArchive = () => {
-  // State.
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [fetchType, setFetchType] = useState('pagination');
-
   // Custom hook to fetch posts.
-  const { posts, setCurrentPage, lastPage } = useFetchPosts({
+  const {
+    posts,
+    setCurrentPage,
+    lastPage,
+    sortDirection,
+    setSortDirection,
+    postsPerPage,
+    setPostsPerPage,
+  } = useFetchPosts({
     perPage: 8,
-    fetchType: fetchType,
-    categoryId: parseInt(selectedCategory),
+    fetchType: 'pagination',
   });
-
-  // Filter posts by category.
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
 
   return (
     <>
       <div className="blog-archive__filters">
-        <select
-          value={selectedCategory || ''}
-          onChange={({ target }) => {
-            handleCategoryChange(target?.value);
-            setFetchType('categories');
-          }}
-        >
-          <option value="">Alle categorieën</option>
-          <option value="1">Categorie Tech</option>
-          <option value="2">Categorie Nieuws</option>
-          <option value="3">Categorie Sports</option>
-          <option value="4">Categorie Lokaal</option>
-        </select>
+        <div className="blog-archive__filter-group">
+          <label
+            className="blog-archive__filter-label"
+            htmlFor="sortPostsDirection"
+          >
+            Sorteer op:
+          </label>
+          <select
+            className="blog-archive__filter-dropdown"
+            name="sortPostsDirection"
+            value={sortDirection}
+            onChange={({ target }) => {
+              setSortDirection(target?.value);
+            }}
+          >
+            <option value="desc">Nieuw - oud</option>
+            <option value="asc">Oud - nieuw</option>
+          </select>
+        </div>
+        <div className="blog-archive__filter-group">
+          <label className="blog-archive__filter-label" htmlFor="postsPerPage">
+            Posts per pagina:
+          </label>
+          <select
+            className="blog-archive__filter-dropdown"
+            name="postsPerPage"
+            value={postsPerPage}
+            onChange={({ target }) => {
+              setPostsPerPage(target?.value);
+            }}
+          >
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="12">12</option>
+            <option value="16">16</option>
+            <option value="20">20</option>
+          </select>
+        </div>
       </div>
       <div className="blog-archive">
         {posts?.map(
