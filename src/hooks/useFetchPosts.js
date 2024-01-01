@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import scrollToTop from '../functions/scrollToTop';
 
 const useFetchPosts = ({ perPage, fetchType }) => {
   // States.
@@ -55,6 +56,7 @@ const useFetchPosts = ({ perPage, fetchType }) => {
           break;
         case 'pagination':
           setPosts(posts);
+          scrollToTop();
           break;
         default:
           setPosts(posts);
