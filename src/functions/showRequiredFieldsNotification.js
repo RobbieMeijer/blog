@@ -5,12 +5,23 @@ const showRequiredFieldsNotification = (fields = []) => {
     fieldElement.current?.classList?.remove('required-field');
     fieldElement.current?.nextSibling?.remove();
 
+    // Define conditional notification text based on field name.
+    const notificationText = () => {
+      switch (fieldName) {
+        case 'categorie':
+        case 'afbeelding':
+          return `Selecteer een ${fieldName}.`;
+        default:
+          return `${fieldName} is leeg.`;
+      }
+    };
+
     // Show notification.
     if ('' === fieldState || null === fieldState) {
       fieldElement.current?.classList.add('required-field');
       fieldElement.current?.insertAdjacentHTML(
         'afterend',
-        `<p class="notification">${fieldName} is leeg.</p>`
+        `<p class="notification">${notificationText()}</p>`
       );
     }
   });
