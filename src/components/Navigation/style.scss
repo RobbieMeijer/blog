@@ -22,7 +22,7 @@
     text-decoration: none;
     display: block;
 
-    &::after {
+    &.active::after {
       content: '';
       display: block;
       background-color: var(--sb-color-orange);
