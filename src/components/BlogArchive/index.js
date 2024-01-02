@@ -5,11 +5,14 @@ import getFullImgUrl from '../../functions/getFullImgUrl';
 import getFormattedDate from '../../functions/getformattedDate';
 import useFetchPosts from '../../hooks/useFetchPosts';
 import blogLoading from '../../assets/blog-loading.svg';
+import { useEffect } from 'react';
+import handlePageUrl from '../../functions/handlePageUrl';
 
 const BlogArchive = () => {
   // Custom hook to fetch posts.
   const {
     posts,
+    currentPage,
     setCurrentPage,
     lastPage,
     sortDirection,
@@ -21,6 +24,11 @@ const BlogArchive = () => {
     perPage: 8,
     fetchType: 'pagination',
   });
+
+  useEffect(() => {
+    // Add logic to update the URL with the current page number.
+    handlePageUrl(currentPage);
+  }, [currentPage]);
 
   return (
     <>

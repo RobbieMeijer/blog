@@ -44,6 +44,10 @@
     letter-spacing: 0;
     line-height: var(--sb-line-height-s);
 
+    .disabled {
+      display: none;
+    }
+
     a[role='button'] {
       padding: var(--sb-space-xs) var(--sb-space-s);
       cursor: pointer;
