@@ -64,15 +64,15 @@ body {
   }
 
   &__footer {
-    height: 32px;
     width: 100%;
     max-width: var(--sb-max-width-site);
     margin: 0 auto;
-    text-align: center;
     background-color: var(--sb-color-grey-7);
     color: var(--sb-color-white);
     font-size: var(--sb-font-size-s);
-    line-height: var(--sb-line-height-l);
+    line-height: calc(2.75 * var(--sb-line-height-m));
+    display: flex;
+    justify-content: center;
   }
 
   &__loading {
