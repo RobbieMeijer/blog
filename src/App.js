@@ -15,6 +15,12 @@ const App = () => {
             <img src={logo} alt="Logo" className="blog__logo" />
             <Navigation />
           </div>
+          <Routes>
+            <Route
+              path="/blog"
+              element={<h1 className="blog__header-title">Blog</h1>}
+            />
+          </Routes>
         </header>
         <div className="blog__content">
           <Routes>
