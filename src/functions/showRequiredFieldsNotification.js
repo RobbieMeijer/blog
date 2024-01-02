@@ -7,6 +7,11 @@ const showRequiredFieldsNotification = (fields = []) => {
 
     // Define conditional notification text based on field name.
     const notificationText = () => {
+      //Fallback.
+      if (!fieldName) {
+        return 'Dit veld is leeg.';
+      }
+
       switch (fieldName) {
         case 'categorie':
         case 'afbeelding':
