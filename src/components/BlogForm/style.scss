@@ -16,21 +16,21 @@
     gap: var(--sb-space-xs);
     padding: 0;
     margin: 0 0 var(--sb-space-xl);
+  }
 
-    .blog-form__title,
-    select,
-    textarea {
-      line-height: var(--sb-line-height-m);
-      padding: var(--sb-space-s) var(--sb-space-m);
-      background-color: var(--sb-color-grey-1);
-      border: 1px;
-      border-radius: var(--sb-border-radius-s);
-      font-family: var(--sb-font-family);
-    }
+  &__title,
+  select,
+  textarea {
+    line-height: var(--sb-line-height-m);
+    padding: var(--sb-space-s) var(--sb-space-m);
+    background-color: var(--sb-color-grey-1);
+    border: 1px;
+    border-radius: var(--sb-border-radius-s);
+    font-family: var(--sb-font-family);
+  }
 
-    textarea.blog-form__content {
-      line-height: var(--sb-line-height-xl);
-    }
+  textarea.blog-form__content {
+    line-height: var(--sb-line-height-xl);
   }
 
   &__label,
