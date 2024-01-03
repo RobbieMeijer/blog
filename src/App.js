@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import BlogForm from './components/BlogForm';
+import BlogPreview from './components/BlogPreview';
+import BlogArchive from './components/BlogArchive';
+import logo from './assets/logo.svg';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="blog">
+        <header className="blog__header">
+          <div className="blog__header-container">
+            <img src={logo} alt="Logo" className="blog__logo" />
+            <Navigation />
+          </div>
+          <Routes>
+            <Route
+              path="/blog"
+              element={<h1 className="blog__header-title">Blog</h1>}
+            />
+          </Routes>
+        </header>
+        <div className="blog__content">
+          <Routes>
+            <Route path="/" element={<BlogForm />} />
+          </Routes>
+          <main className="blog__main-content">
+            <Routes>
+              <Route path="/" element={<BlogPreview />} />
+              <Route path="/blog" element={<BlogArchive />} />
+            </Routes>
+          </main>
+        </div>
+        <footer className="blog__footer">copyright text</footer>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

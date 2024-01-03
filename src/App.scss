@@ -1,0 +1,109 @@
+@import './css-variables/index.scss';
+
+body {
+  margin: 0;
+}
+
+.blog {
+  font-family: var(--sb-font-family);
+  font-weight: var(--sb-font-weight-regular);
+  background-color: var(--sb-color-grey-2);
+
+  &__header {
+    max-width: var(--sb-max-width-site);
+    background: url('./assets/bg-header.png') no-repeat center center;
+    background-size: cover;
+    margin: 0 auto;
+    padding: var(--sb-space-xxl) var(--sb-space-m);
+    height: calc(208px - var(--sb-space-xxl));
+
+    @media (min-width: 768px) {
+      height: calc(208px - 2 * var(--sb-space-xxl));
+    }
+  }
+
+  &__header-container {
+    width: calc(100% - var(--sb-space-xxl));
+    max-width: var(--sb-max-width-content);
+    flex-direction: column;
+    margin: 0 auto;
+    display: flex;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  &__header-title {
+    color: var(--sb-color-white);
+    font-size: 48px;
+    font-weight: var(--sb-font-weight-bold);
+    line-height: 62px;
+    text-align: center;
+    margin: 0;
+
+    @media (min-width: 768px) {
+      margin: var(--sb-space-l) 0 0;
+    }
+  }
+
+  &__logo {
+    width: 240px;
+    height: 57px;
+  }
+
+  &__content {
+    width: 100%;
+    max-width: var(--sb-max-width-content);
+    margin: calc(2 * var(--sb-space-xxl)) auto;
+    gap: var(--sb-space-xl);
+
+    @media (min-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__sidebar {
+    background-color: var(--sb-color-white);
+  }
+
+  &__sidebar {
+    width: 100%;
+
+    @media (min-width: 768px) {
+      max-width: 450px;
+    }
+  }
+
+  &__main-content {
+    flex-grow: 1;
+  }
+
+  &__footer {
+    width: 100%;
+    max-width: var(--sb-max-width-site);
+    margin: 0 auto;
+    background-color: var(--sb-color-grey-7);
+    color: var(--sb-color-white);
+    font-size: var(--sb-font-size-s);
+    line-height: calc(2.75 * var(--sb-line-height-m));
+    display: flex;
+    justify-content: center;
+  }
+
+  &__loading {
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    animation: rotate 0.5s infinite linear;
+  }
+}

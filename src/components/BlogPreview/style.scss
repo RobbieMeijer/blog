@@ -1,0 +1,21 @@
+.blog-preview {
+  padding: var(--sb-space-xl);
+  background-color: var(--sb-color-white);
+
+  &__card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+    gap: var(--sb-space-xl);
+    min-height: 600px;
+
+    @media (min-width: 960px) {
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    }
+  }
+
+  .blog__btn {
+    margin: var(--sb-space-xl) auto 0;
+    display: flex;
+    align-self: center;
+  }
+}
