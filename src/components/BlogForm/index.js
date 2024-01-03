@@ -18,7 +18,7 @@ const BlogForm = () => {
   // Elements.
   const titleElement = useRef(null);
   const categoryIdElement = useRef(null);
-  const fileInputElement = useRef(null);
+  const imageUploadContainerElement = useRef(null);
   const contentElement = useRef(null);
   const renderCount = useRef(0);
 
@@ -37,7 +37,7 @@ const BlogForm = () => {
       },
       {
         fieldState: form.fileInput,
-        fieldElement: fileInputElement,
+        fieldElement: imageUploadContainerElement,
         fieldName: 'afbeelding',
       },
       {
@@ -105,18 +105,33 @@ const BlogForm = () => {
 
   // Define upload image function.
   const uploadImg = async (target) => {
-    // Define file.
+    // Define file and file condition.
     const file = await target?.files[0];
+    const fileIsImage = file?.type?.includes('image/');
 
-    if (!!file && file.type.includes('image/')) {
+    // Define file name html and dom selector.
+    const fileNameHtml = `<span class="filename">${file?.name}</span>`;
+    const fileNameElement =
+      imageUploadContainerElement.current.querySelector('.filename');
+
+    // When selected file is an image.
+    if (!!file && fileIsImage) {
+      // Reset file name html.
+      fileNameElement?.remove();
+
       // Set file input and image name in state if file is an image.
       setForm((prevForm) => ({
         ...prevForm,
         fileInput: file,
         imageName: file.name,
       }));
-    } else {
-      // Run required fields check again if not an image.
+
+      // Apply name of selected image, next to button.
+      imageUploadContainerElement.current.insertAdjacentHTML(
+        'beforeend',
+        fileNameHtml
+      );
+
       initRequiredFieldsCheck();
     }
   };
@@ -129,6 +144,7 @@ const BlogForm = () => {
     if (renderCount.current > 2) {
       initRequiredFieldsCheck();
     }
+    // eslint-disable-next-line
   }, [form.title, form.categoryId, form.fileInput, form.content]);
 
   return (
@@ -182,7 +198,7 @@ const BlogForm = () => {
               *Header afbeelding
             </legend>
             <div
-              ref={fileInputElement}
+              ref={imageUploadContainerElement}
               className="blog-form__image-upload-container"
             >
               <img
