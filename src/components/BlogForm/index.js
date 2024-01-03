@@ -133,6 +133,8 @@ const BlogForm = () => {
       );
 
       initRequiredFieldsCheck();
+    } else {
+      initRequiredFieldsCheck();
     }
   };
 
