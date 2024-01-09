@@ -152,23 +152,38 @@ const BlogForm = () => {
     const file = await target?.files[0];
     const fileIsImage = file?.type?.includes('image/');
 
-    // Define file name html and dom selector.
-    const fileNameHtml = `<span class="filename">${file?.name}</span>`;
-    const fileNameElement =
-      imageUploadContainerElement.current.querySelector('.filename');
-
     // When selected file is an image.
     if (!!file && fileIsImage) {
-      // Reset file name html.
-      fileNameElement?.remove();
-
       // Set file input and image name in state if file is an image.
       setForm((prevForm) => ({
         ...prevForm,
         fileInput: file,
         imageName: file.name,
       }));
+    } else {
+      // Reset file input and image name in state if file is NOT an image.
+      setForm((prevForm) => ({
+        ...prevForm,
+        fileInput: null,
+        imageName: '',
+      }));
+
+      showRequiredFieldsNotification([
+        {
+          fieldState: form.fileInput,
+          fieldElement: imageUploadContainerElement,
+          fieldName: 'afbeelding',
+        },
+      ]);
     }
+
+    // Define file name html and dom selector.
+    const fileNameHtml = `<span class="filename">${file?.name}</span>`;
+    const fileNameElement =
+      imageUploadContainerElement.current.querySelector('.filename');
+
+    // Reset file name html.
+    fileNameElement?.remove();
 
     // Apply name of selected image, next to button.
     imageUploadContainerElement.current.insertAdjacentHTML(
