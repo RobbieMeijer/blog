@@ -4,7 +4,6 @@ import Navigation from './components/Navigation';
 import BlogForm from './components/BlogForm';
 import BlogPreview from './components/BlogPreview';
 import BlogArchive from './components/BlogArchive';
-import logo from './assets/logo.svg';
 
 const App = () => {
   return (
@@ -12,7 +11,6 @@ const App = () => {
       <div className="blog">
         <header className="blog__header">
           <div className="blog__header-container">
-            <img src={logo} alt="Logo" className="blog__logo" />
             <Navigation />
           </div>
           <Routes>
