@@ -161,6 +161,13 @@ const BlogForm = () => {
         imageName: file.name,
       }));
     } else {
+      // Reset file input and image name in state if file is NOT an image.
+      setForm((prevForm) => ({
+        ...prevForm,
+        fileInput: null,
+        imageName: '',
+      }));
+
       showRequiredFieldsNotification([
         {
           fieldState: form.fileInput,
