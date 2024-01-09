@@ -1,5 +1,5 @@
 import './style.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import Button from '../Button';
 import showRequiredFieldsNotification from '../../functions/showRequiredFieldsNotification';
 import someFieldsAreEmpty from '../../functions/someFieldsAreEmpty';
@@ -20,9 +20,8 @@ const BlogForm = () => {
   const categoryIdElement = useRef(null);
   const imageUploadContainerElement = useRef(null);
   const contentElement = useRef(null);
-  const renderCount = useRef(0);
 
-  // Run check required fields.
+  // Run check all required fields.
   const initRequiredFieldsCheck = () => {
     showRequiredFieldsNotification([
       {
@@ -47,6 +46,50 @@ const BlogForm = () => {
       },
     ]);
   };
+
+  // Run check title field.
+  const checkTitleField = useMemo(() => {
+    showRequiredFieldsNotification([
+      {
+        fieldState: form.title,
+        fieldElement: titleElement,
+        fieldName: 'titel',
+      },
+    ]);
+  }, [form.title]);
+
+  // Run check category field.
+  const checkCategoryField = useMemo(() => {
+    showRequiredFieldsNotification([
+      {
+        fieldState: form.categoryId,
+        fieldElement: categoryIdElement,
+        fieldName: 'categorie',
+      },
+    ]);
+  }, [form.categoryId]);
+
+  // Run check image field.
+  const checkImageField = useMemo(() => {
+    showRequiredFieldsNotification([
+      {
+        fieldState: form.fileInput,
+        fieldElement: imageUploadContainerElement,
+        fieldName: 'afbeelding',
+      },
+    ]);
+  }, [form.fileInput]);
+
+  // Run check message field.
+  const checkMessageField = useMemo(() => {
+    showRequiredFieldsNotification([
+      {
+        fieldState: form.content,
+        fieldElement: contentElement,
+        fieldName: 'bericht',
+      },
+    ]);
+  }, [form.content]);
 
   // Add handleSubmit function.
   const handleSubmit = async (e) => {
@@ -125,29 +168,14 @@ const BlogForm = () => {
         fileInput: file,
         imageName: file.name,
       }));
-
-      // Apply name of selected image, next to button.
-      imageUploadContainerElement.current.insertAdjacentHTML(
-        'beforeend',
-        fileNameHtml
-      );
-
-      initRequiredFieldsCheck();
-    } else {
-      initRequiredFieldsCheck();
     }
+
+    // Apply name of selected image, next to button.
+    imageUploadContainerElement.current.insertAdjacentHTML(
+      'beforeend',
+      fileNameHtml
+    );
   };
-
-  useEffect(() => {
-    // Increment the render count.
-    renderCount.current += 1;
-
-    // Run the inner code after the second render.
-    if (renderCount.current > 2) {
-      initRequiredFieldsCheck();
-    }
-    // eslint-disable-next-line
-  }, [form.title, form.categoryId, form.fileInput, form.content]);
 
   return (
     <aside className="blog__sidebar">
